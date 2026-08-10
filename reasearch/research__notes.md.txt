@@ -1,0 +1,698 @@
+
+# Research Notes
+
+## Project: Milwaukee Property Sales Analysis
+
+These notes document the initial inspection, cleaning decisions, and observations made while working with Milwaukee property-sales data from 2017 through 2025.
+
+The purpose of this file is to keep a detailed record of the research and decisions made throughout the project before the final findings are summarized in the main `README.md`.
+
+---
+
+## Initial Data Inspection
+
+### Overview
+
+The raw dataset contains separate property-sales files for each year from 2017 through 2025.
+
+Before combining the yearly files into one dataset, each file will be inspected for differences in structure, formatting, property types, missing values, duplicate records, and other potential data-quality issues.
+
+### Questions Being Reviewed
+
+- Do all yearly files contain the same columns?
+- Are the column names consistent across years?
+- Do the files contain both residential and commercial properties?
+- Are sale-date formats consistent?
+- Are sale-price formats consistent?
+- Are there missing values?
+- Are there duplicate records?
+- Are there unusual or invalid values?
+- Can all yearly files be combined into one dataset?
+
+---
+
+## Year-by-Year Inspection
+
+### 2017
+
+#### File Structure
+
+- Number of rows: 4841
+- Number of columns: 19
+- Column names: PropType	Taxkey	Address	CondoProject	District	Nbhd	Style	Extwall	Stories	Year_Built	Nr_of_rms	Fin_sqft	Units	Bdrms	Fbath	Hbath	Lotsize	Sale_date	Sale_price
+
+- Any unusual columns: Has a column named Nr_of_rms, while many others do not. 
+
+#### Property Types
+
+- Residential properties present: Yes 
+- Commercial properties present: Yes 
+- Condominium properties present: Yes
+- Large apartment properties present: Yes 
+- Vacant land properties present: Yes 
+- Other types of property present: None 
+
+#### Sale Date
+
+- Sale-date column name: Sale_date
+
+- Date format: Year-Month 
+- Missing sale dates: None
+- Other observations: The sale date is not specific; it only uses the year and month.
+
+#### Sale Price
+
+- Sale-price column name: Sale_price
+
+- Price format: Is not set to a specific format. 
+- Missing sale prices: None 
+- Unusual sale prices: One condominium was sold for $0 dollars, which is unusual.
+- Other observations: None 
+
+#### Missing Values
+
+- Columns containing missing values: Exterior wall is the only column that has missing values.
+- Approximate amount of missing data: 1138 rows have the missing data. 
+- Notes: Missing values were found only in the Exterior Walls column. A total of 1,138 records are missing exterior wall information. No changes were made during the initial inspection. These missing values will be reviewed during the data-cleaning stage to determine whether they should remain blank, be categorized as unknown, or be handled another way.
+
+#### Duplicate Records
+
+- Duplicate records found: Yes
+- Number of duplicate rows: 8
+- Number of duplicate pairs: 4
+- Notes: Eight rows were identified as duplicates. Each duplicated record appears twice, resulting in four unique duplicate pairs. These records should be reviewed before removal to confirm that they are true duplicates and not legitimate repeated property transactions.
+
+#### Other Observations
+
+- Several column names use abbreviations, including Nbhd, Extwall, Nr_of_rms, Fin_sqft, Fbath, and Hbath. These may need to be standardized or renamed during the cleaning stage for clarity and consistency across yearly files.
+- The dataset contains multiple property types in the same file, so property type may need to be filtered or categorized during analysis.
+- No additional major issues were identified beyond the missing values, duplicate records, sale-date formatting, and unusual sale-price observations documented above.
+
+---
+
+### 2018
+
+#### File Structure
+
+- Number of rows:
+- Number of columns:
+- Column names:
+- Any unusual columns:
+
+#### Property Types
+
+- Residential properties present:
+- Commercial properties present:
+- Other property types observed:
+
+#### Sale Date
+
+- Sale-date column name:
+- Date format:
+- Missing sale dates:
+- Other observations:
+
+#### Sale Price
+
+- Sale-price column name:
+- Price format:
+- Missing sale prices:
+- Unusual sale prices:
+- Other observations:
+
+#### Missing Values
+
+- Columns containing missing values:
+- Approximate amount of missing data:
+- Notes:
+
+#### Duplicate Records
+
+- Duplicate records found:
+- Number of duplicates:
+- Notes:
+
+#### Other Observations
+
+- 
+
+---
+
+### 2019
+
+#### File Structure
+
+- Number of rows:
+- Number of columns:
+- Column names:
+- Any unusual columns:
+
+#### Property Types
+
+- Residential properties present:
+- Commercial properties present:
+- Other property types observed:
+
+#### Sale Date
+
+- Sale-date column name:
+- Date format:
+- Missing sale dates:
+- Other observations:
+
+#### Sale Price
+
+- Sale-price column name:
+- Price format:
+- Missing sale prices:
+- Unusual sale prices:
+- Other observations:
+
+#### Missing Values
+
+- Columns containing missing values:
+- Approximate amount of missing data:
+- Notes:
+
+#### Duplicate Records
+
+- Duplicate records found:
+- Number of duplicates:
+- Notes:
+
+#### Other Observations
+
+- 
+
+---
+
+### 2020
+
+#### File Structure
+
+- Number of rows:
+- Number of columns:
+- Column names:
+- Any unusual columns:
+
+#### Property Types
+
+- Residential properties present:
+- Commercial properties present:
+- Other property types observed:
+
+#### Sale Date
+
+- Sale-date column name:
+- Date format:
+- Missing sale dates:
+- Other observations:
+
+#### Sale Price
+
+- Sale-price column name:
+- Price format:
+- Missing sale prices:
+- Unusual sale prices:
+- Other observations:
+
+#### Missing Values
+
+- Columns containing missing values:
+- Approximate amount of missing data:
+- Notes:
+
+#### Duplicate Records
+
+- Duplicate records found:
+- Number of duplicates:
+- Notes:
+
+#### Other Observations
+
+- 
+
+---
+
+### 2021
+
+#### File Structure
+
+- Number of rows:
+- Number of columns:
+- Column names:
+- Any unusual columns:
+
+#### Property Types
+
+- Residential properties present:
+- Commercial properties present:
+- Other property types observed:
+
+#### Sale Date
+
+- Sale-date column name:
+- Date format:
+- Missing sale dates:
+- Other observations:
+
+#### Sale Price
+
+- Sale-price column name:
+- Price format:
+- Missing sale prices:
+- Unusual sale prices:
+- Other observations:
+
+#### Missing Values
+
+- Columns containing missing values:
+- Approximate amount of missing data:
+- Notes:
+
+#### Duplicate Records
+
+- Duplicate records found:
+- Number of duplicates:
+- Notes:
+
+#### Other Observations
+
+- 
+
+---
+
+### 2022
+
+#### File Structure
+
+- Number of rows:
+- Number of columns:
+- Column names:
+- Any unusual columns:
+
+#### Property Types
+
+- Residential properties present:
+- Commercial properties present:
+- Other property types observed:
+
+#### Sale Date
+
+- Sale-date column name:
+- Date format:
+- Missing sale dates:
+- Other observations:
+
+#### Sale Price
+
+- Sale-price column name:
+- Price format:
+- Missing sale prices:
+- Unusual sale prices:
+- Other observations:
+
+#### Missing Values
+
+- Columns containing missing values:
+- Approximate amount of missing data:
+- Notes:
+
+#### Duplicate Records
+
+- Duplicate records found:
+- Number of duplicates:
+- Notes:
+
+#### Other Observations
+
+- 
+
+---
+
+### 2023
+
+#### File Structure
+
+- Number of rows:
+- Number of columns:
+- Column names:
+- Any unusual columns:
+
+#### Property Types
+
+- Residential properties present:
+- Commercial properties present:
+- Other property types observed:
+
+#### Sale Date
+
+- Sale-date column name:
+- Date format:
+- Missing sale dates:
+- Other observations:
+
+#### Sale Price
+
+- Sale-price column name:
+- Price format:
+- Missing sale prices:
+- Unusual sale prices:
+- Other observations:
+
+#### Missing Values
+
+- Columns containing missing values:
+- Approximate amount of missing data:
+- Notes:
+
+#### Duplicate Records
+
+- Duplicate records found:
+- Number of duplicates:
+- Notes:
+
+#### Other Observations
+
+- 
+
+---
+
+### 2024
+
+#### File Structure
+
+- Number of rows:
+- Number of columns:
+- Column names:
+- Any unusual columns:
+
+#### Property Types
+
+- Residential properties present:
+- Commercial properties present:
+- Other property types observed:
+
+#### Sale Date
+
+- Sale-date column name:
+- Date format:
+- Missing sale dates:
+- Other observations:
+
+#### Sale Price
+
+- Sale-price column name:
+- Price format:
+- Missing sale prices:
+- Unusual sale prices:
+- Other observations:
+
+#### Missing Values
+
+- Columns containing missing values:
+- Approximate amount of missing data:
+- Notes:
+
+#### Duplicate Records
+
+- Duplicate records found:
+- Number of duplicates:
+- Notes:
+
+#### Other Observations
+
+- 
+
+---
+
+### 2025
+
+#### File Structure
+
+- Number of rows:
+- Number of columns:
+- Column names:
+- Any unusual columns:
+
+#### Property Types
+
+- Residential properties present:
+- Commercial properties present:
+- Other property types observed:
+
+#### Sale Date
+
+- Sale-date column name:
+- Date format:
+- Missing sale dates:
+- Other observations:
+
+#### Sale Price
+
+- Sale-price column name:
+- Price format:
+- Missing sale prices:
+- Unusual sale prices:
+- Other observations:
+
+#### Missing Values
+
+- Columns containing missing values:
+- Approximate amount of missing data:
+- Notes:
+
+#### Duplicate Records
+
+- Duplicate records found:
+- Number of duplicates:
+- Notes:
+
+#### Other Observations
+
+- 
+
+---
+
+## Cross-Year Comparison
+
+### Column Consistency
+
+- Columns present in every year:
+- Columns missing from certain years:
+- Columns added in later years:
+- Columns with different names but similar meanings:
+- Notes:
+
+### Data Type Consistency
+
+- Sale-price data type:
+- Sale-date data type:
+- Property-type data type:
+- Address data type:
+- Other inconsistent data types:
+
+### Property Type Consistency
+
+- Residential property categories:
+- Commercial property categories:
+- Mixed-use properties:
+- Other categories:
+- Differences between years:
+
+### Date Consistency
+
+- Common date format:
+- Years with different formats:
+- Invalid dates found:
+- Missing dates:
+- Cleaning required:
+
+### Sale Price Consistency
+
+- Common sale-price format:
+- Currency symbols present:
+- Commas present:
+- Zero-dollar sales:
+- Extremely low sale prices:
+- Extremely high sale prices:
+- Missing prices:
+- Cleaning required:
+
+---
+
+## Data Quality Findings
+
+### Missing Values
+
+Columns that contain missing values:
+
+- 
+- 
+- 
+
+Potential reasons for missing values:
+
+- 
+- 
+- 
+
+Planned treatment:
+
+- 
+
+### Duplicate Records
+
+- Total duplicate records identified:
+- Years containing duplicates:
+- Possible reasons for duplicates:
+
+Planned treatment:
+
+- 
+
+### Invalid or Unusual Values
+
+Examples of unusual values found:
+
+- 
+- 
+- 
+
+These values will be investigated before deciding whether they should be removed, corrected, or retained.
+
+---
+
+## Dataset Compatibility
+
+### Can the Files Be Combined?
+
+Current conclusion:
+
+- Yes / No / Needs additional cleaning
+
+Reason:
+
+- 
+
+### Required Changes Before Combining
+
+Potential changes include:
+
+- Standardizing column names
+- Removing unnecessary columns
+- Adding missing columns where appropriate
+- Standardizing sale-date formats
+- Converting sale prices to numeric values
+- Standardizing property-type categories
+- Handling missing values
+- Removing confirmed duplicate records
+- Creating a `SaleYear` column
+- Ensuring all files use compatible data types
+
+---
+
+## Initial Findings Summary
+
+After reviewing the 2017–2025 property-sales datasets, the main findings are:
+
+1. 
+2. 
+3. 
+4. 
+5. 
+
+Overall, the datasets appear to be:
+
+- Consistent / Mostly consistent / Significantly different
+
+Before analysis begins, the data will need:
+
+- 
+- 
+- 
+
+---
+
+## Data Cleaning Plan
+
+The next stage of the project will focus on preparing the data for analysis.
+
+Planned cleaning steps:
+
+1. Import all yearly datasets.
+2. Compare column names across years.
+3. Standardize column names.
+4. Remove unnecessary columns.
+5. Convert sale dates into a consistent date format.
+6. Convert sale prices into numeric values.
+7. Standardize property-type categories.
+8. Identify and handle missing values.
+9. Identify and remove confirmed duplicates.
+10. Create a `SaleYear` column.
+11. Combine the yearly datasets.
+12. Validate the combined dataset.
+13. Save the cleaned dataset in the `data/processed/` folder.
+
+---
+
+## Questions for Exploratory Data Analysis
+
+After the dataset has been cleaned and combined, the analysis may investigate questions such as:
+
+- How have Milwaukee property sale prices changed from 2017 to 2025?
+- Which years experienced the largest increases or decreases in sale prices?
+- Which property types sell for the highest prices?
+- How do residential and commercial property sales compare?
+- Which areas of Milwaukee have the highest property values?
+- Which areas have experienced the greatest price growth?
+- How many properties were sold each year?
+- Were there noticeable changes in the Milwaukee real-estate market during or after 2020?
+- Are there unusually high or low property-sale values that could represent outliers?
+- Which neighborhoods or ZIP codes experienced the most sales activity?
+
+---
+
+## Notes and Decisions
+
+Use this section to document important decisions made during the project.
+
+### Decision 1
+
+**Issue:**
+
+**Decision:**
+
+**Reason:**
+
+---
+
+### Decision 2
+
+**Issue:**
+
+**Decision:**
+
+**Reason:**
+
+---
+
+### Decision 3
+
+**Issue:**
+
+**Decision:**
+
+**Reason:**
+
+---
+
+## Next Steps
+
+- Complete the initial inspection of all yearly files.
+- Document differences between years.
+- Determine which columns will be used in the final dataset.
+- Begin the data-cleaning process.
+- Combine the cleaned yearly datasets.
+- Begin exploratory data analysis.
+```
