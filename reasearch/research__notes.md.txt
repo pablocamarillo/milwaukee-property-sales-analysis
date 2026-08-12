@@ -94,47 +94,55 @@ Before combining the yearly files into one dataset, each file will be inspected 
 
 #### File Structure
 
-- Number of rows:
-- Number of columns:
-- Column names:
-- Any unusual columns:
+- Number of rows: 5516
+- Number of columns: 19
+- Column names: PropType	Taxkey	Address	CondoProject	District	Nbhd	Style	Extwall	Stories	Year_Built	Nr_of_rms	Fin_sqft	Units	Bdrms	Fbath	Hbath	Lotsize	Sale_date	Sale_price
+
+- Any unusual columns: Has a column named Nr_of_rms, while many others do not. 
 
 #### Property Types
 
-- Residential properties present:
-- Commercial properties present:
-- Other property types observed:
+- Residential properties present: Yes 
+- Commercial properties present: Yes 
+- Condominium properties present: Yes
+- Large apartment properties present: Yes 
+- Vacant land properties present: Yes 
+- Other types of property present: None
 
 #### Sale Date
 
-- Sale-date column name:
-- Date format:
-- Missing sale dates:
-- Other observations:
+- Sale-date column name: Sale_date
+- Date format: Year-Month 
+- Missing sale dates: None
+- Other observations: The sale date is not specific; it only uses the year and month.
 
 #### Sale Price
 
-- Sale-price column name:
-- Price format:
-- Missing sale prices:
-- Unusual sale prices:
-- Other observations:
+- Sale-price column name: Sale_price
+- Price format: Is not set to a specific format.
+- Missing sale prices: None
+- Unusual sale prices: None
+- Other observations: None
 
 #### Missing Values
 
-- Columns containing missing values:
-- Approximate amount of missing data:
-- Notes:
+- Columns containing missing values: The Extwall (Exterior Wall) column has missing values. 
+- Approximate amount of missing data: The Extwall (Exterior Wall) column contains 1,310 missing values.
+- Notes: Missing values were identified in the Extwall (Exterior Wall) column. No changes were made during the initial inspection. These values will be reviewed during the data-cleaning stage.  
 
 #### Duplicate Records
 
-- Duplicate records found:
-- Number of duplicates:
-- Notes:
+- Duplicate records found: Yes
+- Number of duplicate rows: 6
+- Number of duplicate pairs: 3
+- Notes: Six rows were identified as duplicates. Each duplicated record appears twice, resulting in three unique duplicate pairs. These records should be reviewed before removal to confirm that they are true duplicates and not legitimate repeated property transactions.
 
 #### Other Observations
 
-- 
+- The 2018 dataset has the same overall column structure and number of columns as the 2017 dataset.
+- The Nr_of_rms column is still present in 2018.
+- Ten records in the Style column contain ** instead of a recognizable property style. The meaning of this value is currently unknown and should be investigated before the cleaning stage.
+- No additional major issues were identified beyond the missing exterior-wall values, Style values containing **, duplicate records, and date/price formatting observations documented above. 
 
 ---
 
