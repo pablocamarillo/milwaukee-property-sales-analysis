@@ -150,47 +150,74 @@ Before combining the yearly files into one dataset, each file will be inspected 
 
 #### File Structure
 
-- Number of rows:
-- Number of columns:
-- Column names:
-- Any unusual columns:
+- Number of rows: 6210 property records + 1 blank row
+- Number of columns: 20
+- Column names: PropertyID	PropType	taxkey	Address	CondoProject	District	nbhd	Style	Extwall	Stories	Year_Built	Rooms	FinishedSqft	Units	Bdrms	Fbath	Hbath	Lotsize	Sale_date	Sale_price
+
+- Any unusual columns: This year begins a new column structure, including PropertyID, PropType, Rooms, and FinishedSqft.
 
 #### Property Types
 
-- Residential properties present:
-- Commercial properties present:
-- Other property types observed:
+- Residential properties present: Yes 
+- Commercial properties present: Yes 
+- Condominium properties present: Yes
+- Large apartment properties present: Yes 
+- Vacant land properties present: Yes 
+- Other types of property present: Yes, manufacturing.
 
 #### Sale Date
 
-- Sale-date column name:
-- Date format:
-- Missing sale dates:
-- Other observations:
+- Sale-date column name: Sale_date
+- Date format: Month/Day/Year
+- Missing sale dates: None 
+- Other observations: There are 6 properties with sale dates outside of 2019.
 
 #### Sale Price
 
-- Sale-price column name:
-- Price format:
-- Missing sale prices:
-- Unusual sale prices:
-- Other observations:
+- Sale-price column name: Sale_price
+- Price format: Is not set to a specific format.
+- Missing sale prices: Yes
+- Unusual sale prices: There are 10 property records with NULL Sale_price values, as well as 6 properties with a Sale_price of 0.
+- Other observations: 5 properties have non-zero sale prices below $50.
 
 #### Missing Values
 
-- Columns containing missing values:
-- Approximate amount of missing data:
+- Columns containing missing values: PropType, CondoProject, Extwall, Stories, Year_Built, Rooms, Bdrms, Fbath, Hbath, Sale_price.   
+- Approximate amount of missing data: 
+1. PropType: 8 missing values
+2. CondoProject: 5371 missing values
+3. Extwall: 871 missing values
+4. Stories: 26 missing values
+5. Year_Built: 8 missing values
+6. Rooms: 207 missing values
+7. Bdrms: 207 missing values
+8. Fbath: 655 missing values
+9. Hbath: 4840 missing values
+10. Sale_price: 10 missing values
+
 - Notes:
+
+- Several columns contain a significant amount of missing data.
+- CondoProject and Hbath contain particularly large amounts of missing data, which may represent non-applicable values rather than data-quality issues.
+- Rooms and Bdrms both contain 207 missing values, which may indicate that the same properties are missing both fields.
+- Sale_price contains 10 missing values and should be reviewed during the data-cleaning stage since sale price is important to the analysis.
+- The Rooms column replaces the Nr_of_rms column used in the 2017 and 2018 datasets.
+- Missing values will be investigated further during the data-cleaning stage before deciding whether to remove, replace, or retain them.
 
 #### Duplicate Records
 
-- Duplicate records found:
-- Number of duplicates:
-- Notes:
+Duplicate records found: Yes
+- Number of duplicate rows: 52
+- Number of duplicate pairs: 37
+- Notes: 43 duplicate groups were identified in total. Of these, 37 records appeared twice, 3 appeared three times, and 3 appeared four times.
 
 #### Other Observations
 
-- 
+- The dataset contains one completely blank row, which should be removed during the data-cleaning stage.
+- The 2019 dataset introduces a new column structure compared with 2017 and 2018, including PropertyID, Rooms, and FinishedSqft.
+- Missing data is substantially more common across several columns than in the earlier datasets.
+- Duplicate records are more complex than in previous years, with some identical records appearing three or four times.
+- Several unusual sale values and sale dates outside of 2019 should be investigated during the data-cleaning stage.
 
 ---
 
