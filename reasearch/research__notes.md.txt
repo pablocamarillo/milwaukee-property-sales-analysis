@@ -225,47 +225,66 @@ Duplicate records found: Yes
 
 #### File Structure
 
-- Number of rows:
-- Number of columns:
-- Column names:
-- Any unusual columns:
+- Number of rows: 6354 property records + 1 blank row
+- Number of columns: 20
+- Column names: PropertyID	PropType	taxkey	Address	CondoProject	District	nbhd	Style	Extwall	Stories	Year_Built	Rooms	FinishedSqft	Units	Bdrms	Fbath	Hbath	Lotsize	Sale_date	Sale_price
+
+- Any unusual columns: This year continues the same column structure as the year previous to it, which includes PropertyID, PropType, Rooms, and FinishedSqft.
+
 
 #### Property Types
 
-- Residential properties present:
-- Commercial properties present:
-- Other property types observed:
+- Residential properties present: Yes 
+- Commercial properties present: Yes 
+- Condominium properties present: Yes
+- Large apartment properties present: Yes 
+- Vacant land properties present: Yes 
+- Other types of property present: Yes, Manufacturing and Exempt.
 
 #### Sale Date
 
-- Sale-date column name:
-- Date format:
-- Missing sale dates:
-- Other observations:
+- Sale-date column name: Sale_date
+- Date format: Month/Day/Year
+- Missing sale dates: None
+- Other observations: None; all dates are there as expected, with no random years as well. 
 
 #### Sale Price
 
-- Sale-price column name:
-- Price format:
-- Missing sale prices:
-- Unusual sale prices:
-- Other observations:
+- Sale-price column name: Sale_price
+- Price format: Currency format
+- Missing sale prices: None
+- Unusual sale prices: None 
+- Other observations: All data and the correct format are there. 
 
 #### Missing Values
 
-- Columns containing missing values:
-- Approximate amount of missing data:
-- Notes:
+- Columns containing missing values: CondoProject, District, nbhd, Style, Extwall, Stories, Year_Built, Rooms, FinishedSqft, Bdrms.
+- Approximate amount of missing data: 
+1. CondoProject: 5580 missing values
+2. District: 1 missing value
+3. nbhd: 25 missing values 
+4. Style: 18 missing values
+5. Extwall: 804 missing values
+6. Stories: 23 missing values
+7. Year_Built: 8 missing values
+8. Rooms: 300 missing values
+9. FinishedSqft: 20 missing values
+10. Bdrms: 300 missing values
+
+- Notes: None
 
 #### Duplicate Records
 
-- Duplicate records found:
-- Number of duplicates:
-- Notes:
+Duplicate records found: Yes
+- Number of duplicate rows: 16
+- Number of duplicate pairs: 8
+- Notes: 8 duplicate pairs were identified based on matching Taxkey, Address, Sale_date, and Sale_price. 
 
 #### Other Observations
 
-- 
+- One completely blank row appears at the end of the dataset.
+- Two unusually large Lotsize values appear in commercial property records: 1,703,065,320 and 457,380,000.
+- One residential property has an unusual Hbath value of 10.
 
 ---
 
