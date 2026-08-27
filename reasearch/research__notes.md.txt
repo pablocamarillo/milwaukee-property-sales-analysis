@@ -357,47 +357,66 @@ Duplicate records found: Yes
 
 #### File Structure
 
-- Number of rows:
-- Number of columns:
-- Column names:
-- Any unusual columns:
+- Number of rows: 7,146 property records
+- Number of columns: 20
+- Column names: PropertyID, PropType, taxkey, Address, CondoProject, District, nbhd, Style, Extwall, Stories, Year_Built, Rooms, FinishedSqft, Units, Bdrms, Fbath, Hbath, Lotsize, Sale_date, Sale_price
+- Any unusual columns: No new or unusual columns. This year continues the same 20-column structure used in 2021.
 
 #### Property Types
 
-- Residential properties present:
-- Commercial properties present:
-- Other property types observed:
+- Residential properties present: Yes 
+- Commercial properties present: Yes 
+- Condominium properties present: Yes
+- Large apartment properties present: Yes 
+- Vacant land properties present: No 
+- Other types of property present: Yes, Manufacturing and Exempt.
+
+
 
 #### Sale Date
 
-- Sale-date column name:
-- Date format:
-- Missing sale dates:
-- Other observations:
+- Sale-date column name: Sale_date
+- Date format: YYYY-MM-DD
+- Missing sale dates: None
+- Other observations: All 7,146 sale dates are valid 2022 dates, ranging from January 1, 2022 to December 30, 2022.
 
 #### Sale Price
 
-- Sale-price column name:
-- Price format:
-- Missing sale prices:
-- Unusual sale prices:
-- Other observations:
+- Sale-price column name: Sale_price
+- Price format: Numeric decimal format with two decimal places and no dollar signs or commas (example: 130000.00)
+- Missing sale prices: None
+- Unusual sale prices: Yes. Sale prices range from $4,000 to $21,850,000. Several very low residential sale prices and multimillion-dollar commercial and large-apartment sales are present.
+- Other observations: The wide price range is expected because the dataset contains several different property types.
 
 #### Missing Values
 
-- Columns containing missing values:
+- Columns containing missing values: CondoProject, Style, Extwall, Stories, Year_Built, Rooms, FinishedSqft, Bdrms.
 - Approximate amount of missing data:
-- Notes:
+
+1. CondoProject: 6,261 missing values
+2. Style: 21 missing values
+3. Extwall: 926 missing values
+4. Stories: 39 missing values
+5. Year_Built: 11 missing values
+6. Rooms: 443 missing values
+7. FinishedSqft: 24 missing values
+8. Bdrms: 443 missing values
+
+- Notes: 8,168 total missing values are present in the dataset. Most of the missing data comes from CondoProject, which is expected because most properties are not condominiums. Some missing values are represented by the literal value NULL rather than blank cells.
 
 #### Duplicate Records
 
-- Duplicate records found:
-- Number of duplicates:
-- Notes:
+- Duplicate records found: No
+- Number of duplicates: 0
+- Notes: No fully duplicated records were found when comparing all 20 columns. A second normalized duplicate check that ignored capitalization, extra whitespace, and NULL-versus-blank differences also found 0 duplicate records.
 
 #### Other Observations
 
-- 
+- The dataset contains 7,146 property sales across six property types.
+- The dataset contains no completely blank rows.
+- Sale_date changed to YYYY-MM-DD formatting, while Sale_price uses plain numeric decimal formatting rather than currency formatting.
+- 91 PropertyID values appear more than once, representing 182 records. These records contain differences in sale date, sale price, or other fields and are therefore not exact duplicates.
+- Two repeated PropertyID values have the same sale date but different sale prices, so they may be worth keeping in mind during later data cleaning rather than automatically deleting them.
 
 ---
 
