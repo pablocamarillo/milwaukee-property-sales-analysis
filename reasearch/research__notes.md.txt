@@ -557,47 +557,68 @@ Duplicate records found: Yes
 
 #### File Structure
 
-- Number of rows:
-- Number of columns:
-- Column names:
-- Any unusual columns:
+- Number of rows: 5,580 property records + 105 completely blank rows (5,685 total rows excluding the header)
+- Number of columns: 21
+- Column names: PropertyID, PropType, taxkey, Address, CondoProject, District, nbhd, Style, Extwall, Stories, Year_Built, Rooms, FinishedSqft, Units, SoldAsVacantLand, Bdrms, Fbath, Hbath, Lotsize, Sale_date, Sale_price
+- Any unusual columns: The dataset continues using the 21-column structure introduced in 2024. However, Units appears before SoldAsVacantLand in 2025, reversing the order of those two columns from 2024.
 
 #### Property Types
 
-- Residential properties present:
-- Commercial properties present:
-- Other property types observed:
+- Residential properties present: Yes 
+- Commercial properties present: Yes 
+- Condominium properties present: Yes
+- Large apartment properties present: Yes 
+- Vacant land properties present: No 
+- Other types of property present: Yes, Exempt.
 
 #### Sale Date
 
-- Sale-date column name:
-- Date format:
-- Missing sale dates:
-- Other observations:
+- Sale-date column name: Sale_date
+- Date format: Month/Day/Year
+- Missing sale dates: None among the 5,580 property records
+- Other observations: All 5,580 property records contain valid 2025 sale dates, ranging from January 1, 2025 to December 31, 2025.
 
 #### Sale Price
 
-- Sale-price column name:
-- Price format:
-- Missing sale prices:
-- Unusual sale prices:
-- Other observations:
+- Sale-price column name: Sale_price
+- Price format: Plain whole-number numeric format with no dollar signs, commas, or decimal places (example: 650000)
+- Missing sale prices: None among the 5,580 property records
+- Unusual sale prices: Yes. Sale prices range from $1,500 to $40,900,000. The lowest recorded sale is a residential property, while the highest recorded sale is a commercial property.
+- Other observations: The wide range in sale prices is expected because several different property types are included in the same dataset.
 
 #### Missing Values
 
-- Columns containing missing values:
+- Columns containing missing values: Address, CondoProject, Style, Extwall, Stories, Year_Built, Rooms, FinishedSqft, Bdrms.
 - Approximate amount of missing data:
-- Notes:
+
+1. Address: 3 missing values
+2. CondoProject: 4,895 missing values
+3. Style: 17 missing values
+4. Extwall: 717 missing values
+5. Stories: 29 missing values
+6. Year_Built: 8 missing values
+7. Rooms: 337 missing values
+8. FinishedSqft: 22 missing values
+9. Bdrms: 337 missing values
+
+- Notes: 6,365 total missing values are present among the 5,580 actual property records, representing approximately 5.4% of the property-record cells. Most of the missing data comes from CondoProject, which is expected because most properties are not condominiums. The 3 missing Address values are represented by the literal value NULL.
 
 #### Duplicate Records
 
-- Duplicate records found:
-- Number of duplicates:
-- Notes:
+- Duplicate records found: No among the actual property records
+- Number of duplicates: 0 property-record duplicates
+- Notes: No fully duplicated property records were found when comparing all 21 columns. A second normalized duplicate check that ignored capitalization, extra whitespace, and NULL-versus-blank differences also found 0 property-record duplicates. The raw CSV does contain 105 completely blank rows at the end of the file; because these rows are identical, they technically create 104 duplicate blank rows, but they are not property records and should be treated separately.
 
 #### Other Observations
 
-- 
+- The dataset contains 5,580 actual property sales across five property types.
+- The file contains 105 completely blank rows at the end of the dataset. These should be removed during the data-cleaning phase.
+- The SoldAsVacantLand column continues from 2024. It contains 5,564 records marked N and 16 records marked Y.
+- Sale_date continues using the M/D/YYYY format used in 2024.
+- Sale_price continues using whole-number numeric formatting.
+- 83 PropertyID values appear more than once, representing 166 property records. Each repeated PropertyID appears twice.
+- All repeated PropertyID records have different sale dates, indicating they are separate sales rather than duplicate records.
+- Units and SoldAsVacantLand switched column positions compared with the 2024 dataset.
 
 ---
 
