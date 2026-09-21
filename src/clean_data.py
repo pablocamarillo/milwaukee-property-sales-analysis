@@ -17,6 +17,23 @@ def clean_property_data(df, year):
 
     # Remove completely blank rows
     df = df.dropna(how="all").copy()
+        # Standardize older column names
+    column_renames = {
+        "Taxkey": "taxkey",
+        "Nbhd": "nbhd",
+        "Nr_of_rms": "Rooms",
+        "Fin_sqft": "FinishedSqft"
+    }
+
+    df = df.rename(columns=column_renames)
+
+    # Add PropertyID if an older dataset does not contain it
+    if "PropertyID" not in df.columns:
+        df["PropertyID"] = pd.NA
+
+    # Keep the original Sale_price values for validation
+    raw_sale_price = df["Sale_price"].copy()
+    raw_sale_date = df["Sale_date"].copy()
 
     print("Shape after removing blank rows:", df.shape)
 
@@ -24,6 +41,25 @@ def clean_property_data(df, year):
     df["Sale_date"] = pd.to_datetime(
         df["Sale_date"],
         errors="coerce"
+    )
+
+        # Check whether missing prices came from the source
+    source_missing_prices = raw_sale_price.isna().sum()
+
+    # Check whether cleaning caused any price conversion failures
+    failed_price_conversions = (
+        df["Sale_price"].isna()
+        & raw_sale_price.notna()
+    ).sum()
+
+    print(
+        "Sale_price values missing in source:",
+        source_missing_prices
+    )
+
+    print(
+        "Sale_price conversion failures:",
+        failed_price_conversions
     )
 
     # Clean Sale_price formatting
@@ -109,31 +145,75 @@ def clean_property_data(df, year):
     print("Shape after removing duplicates:", df.shape)
 
     # Check repeated PropertyID values
-    repeated_property_ids = (
-        df["PropertyID"]
-        .duplicated(keep=False)
-        .sum()
-    )
+        # Check repeated PropertyID values when available
+    if df["PropertyID"].notna().any():
 
-    print(
-        "Rows with repeated PropertyID values:",
-        repeated_property_ids
-    )
+        repeated_property_ids = (
+            df["PropertyID"]
+            .duplicated(keep=False)
+            .sum()
+        )
+
+        print(
+            "Rows with repeated PropertyID values:",
+            repeated_property_ids
+        )
+
+    else:
+        print(
+            "Rows with repeated PropertyID values:",
+            "Not available - no PropertyID in source"
+        )
 
     # Add the sale year
     df["SaleYear"] = year
+
+        # Flag records where Sale_date does not match the source dataset year
+    df["YearMismatch"] = (
+        df["Sale_date"].dt.year != year
+    )
 
     # Final validation
     print(
         "Missing Sale_date values:",
         df["Sale_date"].isna().sum()
     )
+        # Check whether Sale_date matches the dataset year
+    year_mismatch = (
+        df["Sale_date"].notna()
+        & (df["Sale_date"].dt.year != year)
+    )
+
+    print(
+        "Sale_date year mismatches:",
+        year_mismatch.sum()
+    )
+
+    if year_mismatch.sum() > 0:
+            print("\nRows where Sale_date does not match file year:")
+
+            mismatch_rows = df.loc[
+            year_mismatch,
+            ["PropertyID", "Address", "Sale_date"]
+            ].copy()
+
+            mismatch_rows["Original_Sale_date"] = raw_sale_date.loc[
+                mismatch_rows.index
+            ]
+
+            print(mismatch_rows.to_string(index=False))
 
     print(
         "Missing Sale_price values:",
         df["Sale_price"].isna().sum()
     )
 
+    # Show records with missing Sale_price values
+    missing_price_rows = df[df["Sale_price"].isna()]
+
+    if len(missing_price_rows) > 0:
+        print("\nRows with missing Sale_price:")
+        print(missing_price_rows.to_string(index=False))
     print("Final dataset shape:", df.shape)
 
     # Give the cleaned dataset back
@@ -143,7 +223,7 @@ def clean_property_data(df, year):
 # CLEAN MULTIPLE YEARS
 # -----------------------------
 
-years = [2021, 2022, 2023, 2024, 2025]
+years = [2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025]
 
 for year in years:
 
