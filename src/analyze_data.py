@@ -308,18 +308,142 @@ print(
     residential_price_change.round(2)
 )
 
+# Count unique residential neighborhoods
+unique_neighborhoods = (
+    residential_sales["nbhd"]
+    .nunique()
+)
+
+print(
+    "\nNumber of residential neighborhoods:",
+    unique_neighborhoods
+)
+
+# Find the 10 neighborhoods with the most residential sales
+top_neighborhoods_by_sales = (
+    residential_sales["nbhd"]
+    .value_counts()
+    .head(10)
+)
+
+# Get the neighborhood codes from the top 10 by sales volume
+top_neighborhood_codes = top_neighborhoods_by_sales.index
+
+# Calculate median sale price for those neighborhoods
+top_neighborhood_prices = (
+    residential_sales[
+        residential_sales["nbhd"].isin(top_neighborhood_codes)
+    ]
+    .groupby("nbhd")["Sale_price"]
+    .median()
+    .sort_values(ascending=False)
+)
+
+print("\nMedian sale price for top 10 high-volume neighborhoods:")
+print(top_neighborhood_prices)
+
+print("\nTop 10 residential neighborhoods by sales volume:")
+print(top_neighborhoods_by_sales)
+
+# Combine sales volume and median price for top neighborhoods
+top_neighborhood_summary = pd.DataFrame({
+    "SalesVolume": top_neighborhoods_by_sales,
+    "MedianSalePrice": top_neighborhood_prices
+})
+
+print("\nTop neighborhood summary:")
+print(
+    top_neighborhood_summary
+    .sort_values("SalesVolume", ascending=False)
+)
+
+neighborhood_area_map = {
+    2100.0: "West Side/Mount Mary",
+    2080.0: "West Side/Mount Mary",
+    4520.0: "Wilson Park",
+    4240.0: "Fairview",
+    4420.0: "Alverno",
+    4340.0: "Euclid Park",
+    1140.0: "Havenwoods/Thurston Woods",
+    4120.0: "South Side",
+    4620.0: "Bay View",
+    2040.0: "West Side/Mount Mary"
+}
+
+top_neighborhood_summary["ResidentialArea"] = (
+    top_neighborhood_summary.index.map(neighborhood_area_map)
+)
+
+# Create readable neighborhood labels
+top_neighborhood_summary["NeighborhoodLabel"] = (
+    top_neighborhood_summary.index.astype(int).astype(str)
+    + " - "
+    + top_neighborhood_summary["ResidentialArea"]
+)
+
+print("\nNeighborhood labels:")
+print(
+    top_neighborhood_summary[
+        ["NeighborhoodLabel", "SalesVolume", "MedianSalePrice"]
+    ]
+    .sort_values("SalesVolume", ascending=False)
+)
+
+# Plot median sale price for top 10 high-volume neighborhoods
+neighborhood_price_chart = (
+    top_neighborhood_summary
+    .sort_values("MedianSalePrice", ascending=True)
+    .copy()
+)
+
+# Give each neighborhood its own numeric position
+y_positions = range(len(neighborhood_price_chart))
+
+# Create a larger figure
+plt.figure(figsize=(12, 7))
+
+# Create horizontal bars
+plt.barh(
+    y_positions,
+    neighborhood_price_chart["MedianSalePrice"].values
+)
+
+# Replace numeric positions with neighborhood names
+plt.yticks(
+    y_positions,
+    neighborhood_price_chart["NeighborhoodLabel"].tolist()
+)
+
+plt.title(
+    "Median Residential Sale Price in Top 10 High-Volume Neighborhoods"
+)
+plt.xlabel("Median Sale Price ($)")
+plt.ylabel("Neighborhood")
+
+plt.grid(
+    axis="x",
+    alpha=0.3
+)
+
+plt.tight_layout()
+plt.show()
+
 # Plot residential median sale price by year
-plt.plot(
+fig, ax = plt.subplots(figsize=(10, 6))
+
+ax.plot(
     residential_median_by_year.index,
     residential_median_by_year.values,
     marker="o"
 )
 
-plt.title("Milwaukee Residential Median Sale Price, 2017-2025")
-plt.xlabel("Year")
-plt.ylabel("Median Sale Price ($)")
+ax.set_title(
+    "Milwaukee Residential Median Sale Price, 2017-2025"
+)
+ax.set_xlabel("Year")
+ax.set_ylabel("Median Sale Price ($)")
 
-plt.grid(True)
+ax.grid(True, alpha=0.3)
+
 plt.tight_layout()
-
 plt.show()
